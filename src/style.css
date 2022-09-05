@@ -96,11 +96,11 @@ header div {
 }
 
 .copy-icon {
-  background-image: url('/src/assets/images/icons/copy-icon.png');
+  background-image: url('../src/assets/images/icons/copy-icon.png');
 }
 
 .done-icon {
-  background-image: url('/src/assets/images/icons/done-icon.png');
+  background-image: url('../src/assets/images/icons/done-icon.png');
 }
 
 .isVisible {
