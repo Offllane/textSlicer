@@ -1,0 +1,26 @@
+{
+  "name": "textslicer",
+  "version": "1.0.0",
+  "description": "Divides text into sentences that not exceeding a certain number of character",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Offllane/textSlicer.git"
+  },
+  "keywords": [
+    "text",
+    "slicer"
+  ],
+  "author": "Offllane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Offllane/textSlicer/issues"
+  },
+  "homepage": "https://github.com/Offllane/textSlicer#readme",
+  "devDependencies": {
+    "typescript": "^4.8.2"
+  }
+}

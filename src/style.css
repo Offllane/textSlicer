@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+header div {
+  margin-right: 30px;
+}
+
+.container {
+  display: flex;
+}
+
+#inputTextArea {
+  width: 50vw;
+  max-width: 600px;
+  height: 70vh;
+  padding: 10px;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+#partsCardsContainer {
+  width: 100%;
+}
+
+.part-card {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid black;
+}
+
+.part-card:not(:last-child) {
+  border-bottom: none;
+}
+
+.part-card.copied {
+  background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+}
+
+.part-card.done {
+  background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);
+}
+
+.part-card > .additional-inform-container {
+  display: flex;
+}
+
+.additional-inform-container > .additional-inform {
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.part-card > .part-text {
+  text-wrap: normal;
+  padding: 5px 0;
+}
+
+.part-card > .button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.button-container > .copy-message {
+  margin-right: 20px;
+  visibility: hidden;
+}
+
+.copy-button {
+  margin-right: 5px;
+}
+
+.icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-size: 20px;
+}
+
+.copy-icon {
+  background-image: url('/src/assets/images/icons/copy-icon.png');
+}
+
+.done-icon {
+  background-image: url('/src/assets/images/icons/done-icon.png');
+}
+
+.isVisible {
+  visibility: visible !important;
+}
+
+button {
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  background: transparent;
+}
+
