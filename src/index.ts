@@ -33,7 +33,7 @@
     return MAIN_TEXT_AREA.value;
   }
 
-  function splitTextForParts(text = textareaText, maxCharactersQuantity: number = MAX_CHARACTERS_QUANTITY) {
+  function splitTextForParts(text: string = textareaText, maxCharactersQuantity: number = MAX_CHARACTERS_QUANTITY) {
     const partsArray = [];
 
     if (text.length < maxCharactersQuantity) { //if text has only one part
