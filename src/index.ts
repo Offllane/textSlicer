@@ -8,7 +8,6 @@
 
   let textareaText = '';
   let partsArray: Array<string> = new Array<string>();
-  let sentencesArray: Array<string> = new Array<string>;
 
   function addEventListeners() {
     'change keyup'.split(' ').forEach(event => {
@@ -21,7 +20,7 @@
         }
 
         textareaText = getDataFromTextArea();
-        partsArray = splitTextForParts(MAX_CHARACTERS_QUANTITY);
+        partsArray = splitTextForParts(textareaText, MAX_CHARACTERS_QUANTITY);
         setCharactersQuantity(textareaText.length);
         setPartsQuantity(partsArray.length);
         clearPartsCards();
@@ -34,45 +33,45 @@
     return MAIN_TEXT_AREA.value;
   }
 
-  function splitTextForParts(maxCharactersQuantity: number = MAX_CHARACTERS_QUANTITY) {
+  function splitTextForParts(text: string = textareaText, maxCharactersQuantity: number = MAX_CHARACTERS_QUANTITY) {
     const partsArray = [];
-    if (textareaText.length < maxCharactersQuantity) {
-      partsArray.push(textareaText);
-      return partsArray
+
+    if (text.length < maxCharactersQuantity) { //if text has only one part
+      partsArray.push(text);
+      return partsArray;
     }
 
-    sentencesArray = splitForSentences(textareaText);
+    const sentencesArray = splitForSentences(text);
 
-
-    for (let i = 0, charactersCounter = 0, neededLengthPart = ''; i < sentencesArray.length; i++) {
-      charactersCounter += sentencesArray[i].length;
-      if (charactersCounter >= maxCharactersQuantity) {
-        partsArray.push(neededLengthPart);
+    for (let i = 0, charactersCounter = 0, completedPart = ''; i < sentencesArray.length; i++) {
+      if (isPartLengthMoreThanValue(charactersCounter, sentencesArray[i], MAX_CHARACTERS_QUANTITY)) {
+        partsArray.push(completedPart);
         charactersCounter = 0;
-        neededLengthPart = '';
-      } else {
-        neededLengthPart += sentencesArray[i];
+        completedPart = '';
       }
+
+      completedPart += sentencesArray[i];
+      charactersCounter += sentencesArray[i]?.length
+
       if (i === sentencesArray.length - 1) { // for last iteration
-        partsArray.push(neededLengthPart);
+        partsArray.push(completedPart);
       }
     }
 
     return partsArray;
   }
 
+  function isPartLengthMoreThanValue(charactersCounter: number, currentSentence: string, maxCharactersQuantity:number = MAX_CHARACTERS_QUANTITY) {
+    return charactersCounter + currentSentence.length >= maxCharactersQuantity;
+  }
+
   function splitForSentences(text: string): Array<string> {
-    const sentencesFinishSymbols: Array<string> = '? !'.split(' ');
-    let textAsSentencesArray: any = text.trim().split('.').filter(Boolean).map(sentence => sentence + '.');
+    const sentencesFinishSymbols: Array<string> = '. ? !'.split(' ');
 
-    sentencesFinishSymbols.forEach(symbol => {
-      textAsSentencesArray = textAsSentencesArray.map(sentence => {
-        const tempString = sentence.replace(symbol, `${symbol}_`);
-        return tempString.split('_');
-      }).flat(Infinity);
-    });
-
-    return textAsSentencesArray;
+    for (let sentenceFinishSymbol of sentencesFinishSymbols) {
+      text = text.replaceAll(sentenceFinishSymbol, `${sentenceFinishSymbol}__`);
+    }
+    return text.split('__');
   }
 
   function setPartsQuantity(quantity: number): void {
