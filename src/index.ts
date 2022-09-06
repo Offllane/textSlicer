@@ -62,17 +62,12 @@
   }
 
   function splitForSentences(text: string): Array<string> {
-    const sentencesFinishSymbols: Array<string> = '? !'.split(' ');
-    let textAsSentencesArray: any = text.trim().split('.').filter(Boolean).map(sentence => sentence + '.');
+    const sentencesFinishSymbols: Array<string> = '. ? !'.split(' ');
 
-    sentencesFinishSymbols.forEach(symbol => {
-      textAsSentencesArray = textAsSentencesArray.map(sentence => {
-        const tempString = sentence.replace(symbol, `${symbol}_`);
-        return tempString.split('_');
-      }).flat(Infinity);
-    });
-
-    return textAsSentencesArray;
+    for (let sentenceFinishSymbol of sentencesFinishSymbols) {
+      text = text.replaceAll(sentenceFinishSymbol, `${sentenceFinishSymbol}__`);
+    }
+    return text.split('__');
   }
 
   function setPartsQuantity(quantity: number): void {
