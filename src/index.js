@@ -7,7 +7,6 @@
     addEventListeners();
     let textareaText = '';
     let partsArray = new Array();
-    let sentencesArray = new Array;
     function addEventListeners() {
         'change keyup'.split(' ').forEach(event => {
             MAIN_TEXT_AREA.addEventListener(event, () => {
@@ -18,7 +17,7 @@
                     return;
                 }
                 textareaText = getDataFromTextArea();
-                partsArray = splitTextForParts(MAX_CHARACTERS_QUANTITY);
+                partsArray = splitTextForParts(textareaText, MAX_CHARACTERS_QUANTITY);
                 setCharactersQuantity(textareaText.length);
                 setPartsQuantity(partsArray.length);
                 clearPartsCards();
@@ -29,28 +28,29 @@
     function getDataFromTextArea() {
         return MAIN_TEXT_AREA.value;
     }
-    function splitTextForParts(maxCharactersQuantity = MAX_CHARACTERS_QUANTITY) {
+    function splitTextForParts(text = textareaText, maxCharactersQuantity = MAX_CHARACTERS_QUANTITY) {
         const partsArray = [];
-        if (textareaText.length < maxCharactersQuantity) {
-            partsArray.push(textareaText);
+        if (text.length < maxCharactersQuantity) { //if text has only one part
+            partsArray.push(text);
             return partsArray;
         }
-        sentencesArray = splitForSentences(textareaText);
-        for (let i = 0, charactersCounter = 0, neededLengthPart = ''; i < sentencesArray.length; i++) {
-            charactersCounter += sentencesArray[i].length;
-            if (charactersCounter >= maxCharactersQuantity) {
-                partsArray.push(neededLengthPart);
+        const sentencesArray = splitForSentences(text);
+        for (let i = 0, charactersCounter = 0, completedPart = ''; i < sentencesArray.length; i++) {
+            if (isPartLengthMoreThanValue(charactersCounter, sentencesArray[i], MAX_CHARACTERS_QUANTITY)) {
+                partsArray.push(completedPart);
                 charactersCounter = 0;
-                neededLengthPart = '';
+                completedPart = '';
             }
-            else {
-                neededLengthPart += sentencesArray[i];
-            }
+            completedPart += sentencesArray[i];
+            charactersCounter += sentencesArray[i]?.length;
             if (i === sentencesArray.length - 1) { // for last iteration
-                partsArray.push(neededLengthPart);
+                partsArray.push(completedPart);
             }
         }
         return partsArray;
+    }
+    function isPartLengthMoreThanValue(charactersCounter, currentSentence, maxCharactersQuantity = MAX_CHARACTERS_QUANTITY) {
+        return charactersCounter + currentSentence.length >= maxCharactersQuantity;
     }
     function splitForSentences(text) {
         const sentencesFinishSymbols = '. ? !'.split(' ');
