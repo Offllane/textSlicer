@@ -17,6 +17,8 @@
                     return;
                 }
                 textareaText = getDataFromTextArea();
+                textareaText = removeUnwantedSymbols(textareaText, new Array(`"`, `'`, `«`, `»`));
+                console.log(textareaText);
                 partsArray = splitTextForParts(textareaText, MAX_CHARACTERS_QUANTITY);
                 setCharactersQuantity(textareaText.length);
                 setPartsQuantity(partsArray.length);
@@ -27,6 +29,12 @@
     }
     function getDataFromTextArea() {
         return MAIN_TEXT_AREA.value;
+    }
+    function removeUnwantedSymbols(text, unwantedSymbols) {
+        for (let symbol of unwantedSymbols) {
+            text = text.replaceAll(symbol, '');
+        }
+        return text;
     }
     function splitTextForParts(text = textareaText, maxCharactersQuantity = MAX_CHARACTERS_QUANTITY) {
         const partsArray = [];
