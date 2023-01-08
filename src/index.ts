@@ -20,6 +20,8 @@
         }
 
         textareaText = getDataFromTextArea();
+        textareaText = removeUnwantedSymbols(textareaText, new Array<string>(`"`, `'`, `«`, `»`));
+        console.log(textareaText);
         partsArray = splitTextForParts(textareaText, MAX_CHARACTERS_QUANTITY);
         setCharactersQuantity(textareaText.length);
         setPartsQuantity(partsArray.length);
@@ -31,6 +33,13 @@
 
   function getDataFromTextArea(): string {
     return MAIN_TEXT_AREA.value;
+  }
+
+  function removeUnwantedSymbols(text: string, unwantedSymbols: Array<string>): string {
+    for (let symbol of unwantedSymbols) {
+      text = text.replaceAll(symbol, '');
+    }
+    return text;
   }
 
   function splitTextForParts(text: string = textareaText, maxCharactersQuantity: number = MAX_CHARACTERS_QUANTITY) {
