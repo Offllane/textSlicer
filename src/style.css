@@ -16,10 +16,19 @@ body {
 
 header {
   display: flex;
+  flex-direction: column;
   margin-bottom: 30px;
+  width: 50vw;
 }
 
 header div {
+  display: flex;
+  margin: 0 30px 10px 0;
+}
+
+input {
+  padding: 5px;
+  font-size: 14px;
   margin-right: 30px;
 }
 
@@ -84,15 +93,19 @@ header div {
   visibility: hidden;
 }
 
-.copy-button {
-  margin-right: 5px;
-}
-
 .icon {
   display: block;
   width: 20px;
   height: 20px;
   background-size: 20px;
+}
+
+.play-icon {
+  background-image: url('../src/assets/images/icons/play-icon.png');
+}
+
+.download-icon {
+  background-image: url('../src/assets/images/icons/download.png');
 }
 
 .copy-icon {
