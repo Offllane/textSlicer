@@ -22,5 +22,10 @@
   "homepage": "https://github.com/Offllane/textSlicer#readme",
   "devDependencies": {
     "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "@types/node": "^18.11.19",
+    "express": "^4.18.2",
+    "express-http-proxy": "^1.6.3"
   }
 }
