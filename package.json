@@ -4,7 +4,8 @@
   "description": "Divides text into sentences that not exceeding a certain number of character",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start:proxy": "node proxy.js"
   },
   "repository": {
     "type": "git",
