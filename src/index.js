@@ -143,6 +143,7 @@
         try {
             const response = await fetch(YANDEX_SPEECH_KIT_URL, requestParams);
             if (response.ok) {
+                console.log(response);
                 const blob = await response.blob();
                 downloadFile(blob, index);
             }
