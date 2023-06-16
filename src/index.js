@@ -8,10 +8,16 @@
     const MAX_CHARACTERS_QUANTITY = 5000;
     const YANDEX_SPEECH_KIT_URL = 'https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize';
     let iAmToken = '';
-    let folderId = '';
-    addEventListeners();
+    let folderId = localStorage.getItem('folderId') ?? '';
     let textareaText = '';
-    let partsArray = new Array();
+    let partsArray = [];
+
+    setDefaultValueToInputs();
+    addEventListeners();
+
+    function setDefaultValueToInputs() {
+        FOLDER_ID_INPUT_ELEMENT.value = folderId;
+    }
     function addEventListeners() {
         'change keyup'.split(' ').forEach(event => {
             MAIN_TEXT_AREA.addEventListener(event, () => {
@@ -34,6 +40,7 @@
             });
             FOLDER_ID_INPUT_ELEMENT.addEventListener(event, () => {
                 folderId = FOLDER_ID_INPUT_ELEMENT.value;
+                localStorage.setItem('folderId', folderId);
             });
         });
     }
