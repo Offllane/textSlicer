@@ -79,6 +79,10 @@ input {
 .part-card > .part-text {
   text-wrap: normal;
   padding: 5px 0;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  border-bottom: 1px solid black;
 }
 
 .part-card > .button-container {
