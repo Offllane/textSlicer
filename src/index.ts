@@ -195,7 +195,8 @@
   }
 
   function copyToClipboard(textToCopy: string) {
-    return  navigator.clipboard.writeText(textToCopy);
+    const introduction = 'Выпиши 5 основных мыслей по одному предложению из текста из следующего отрывка:\n ';
+    return  navigator.clipboard.writeText(introduction + textToCopy);
   }
 
   function downloadFile(blob: Blob, index: number): void {

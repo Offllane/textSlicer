@@ -8,16 +8,10 @@
     const MAX_CHARACTERS_QUANTITY = 5000;
     const YANDEX_SPEECH_KIT_URL = 'https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize';
     let iAmToken = '';
-    let folderId = localStorage.getItem('folderId') ?? '';
-    let textareaText = '';
-    let partsArray = [];
-
-    setDefaultValueToInputs();
+    let folderId = '';
     addEventListeners();
-
-    function setDefaultValueToInputs() {
-        FOLDER_ID_INPUT_ELEMENT.value = folderId;
-    }
+    let textareaText = '';
+    let partsArray = new Array();
     function addEventListeners() {
         'change keyup'.split(' ').forEach(event => {
             MAIN_TEXT_AREA.addEventListener(event, () => {
@@ -40,7 +34,6 @@
             });
             FOLDER_ID_INPUT_ELEMENT.addEventListener(event, () => {
                 folderId = FOLDER_ID_INPUT_ELEMENT.value;
-                localStorage.setItem('folderId', folderId);
             });
         });
     }
@@ -172,7 +165,8 @@
         document.getElementById('copiedMessage' + index).classList.remove('isVisible');
     }
     function copyToClipboard(textToCopy) {
-        return navigator.clipboard.writeText(textToCopy);
+        const introduction = 'Выпиши 5 основных мыслей по одному предложению из текста из следующего отрывка:\n ';
+        return navigator.clipboard.writeText(introduction + textToCopy);
     }
     function downloadFile(blob, index) {
         console.log(blob);
