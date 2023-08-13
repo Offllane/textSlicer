@@ -7,8 +7,8 @@
     const PARTS_CARDS_CONTAINER_ELEMENT = document.getElementById('partsCardsContainer');
     const MAX_CHARACTERS_QUANTITY = 5000;
     const YANDEX_SPEECH_KIT_URL = 'https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize';
-    let iAmToken = '';
-    let folderId = '';
+    let iAmToken = 't1.9euelZrMiY7NnpGUyIzNj82PkZjLye3rnpWanY3Px8zGyoyRnJ7Iy8mZlJTl8_cPahxZ-e9QN2xX_N3z908YGln571A3bFf8zef1656VmouOzZXJm8rNj8ySnpnGx5Wd7_zF656VmouOzZXJm8rNj8ySnpnGx5Wd.NCcv5go5QF0nv8KlGgPSE8j_v7yvwPFUuNvkRrXRAVy7wyDOKeCD8zaDzS8HE2GzyHVgey2ZfsHYWBj765sYCw';
+    let folderId = 'b1gfa8ec480fsl01s1na';
     addEventListeners();
     let textareaText = '';
     let partsArray = new Array();
